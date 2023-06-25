@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const accessTokenExpiryTime = "15m";
+
 export const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -49,8 +51,19 @@ export const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.methods.generateJWT = function () {
-  return jwt.sign(_.pick(this, ["firstName"]), process.env.JWT_PRIVATE_KEY);
+userSchema.methods.generateAccessToken = function () {
+  return jwt.sign(
+    _.pick(this, ["firstName", "lastName", "email", "role"]),
+    process.env.ACCESS_PRIVATE_KEY || "",
+    { expiresIn: accessTokenExpiryTime }
+  );
+};
+
+userSchema.methods.generateRefreshToken = function () {
+  return jwt.sign(
+    _.pick(this, ["firstName", "lastName", "email", "role"]),
+    process.env.REFRESH_PRIVATE_KEY || ""
+  );
 };
 
 export const User = mongoose.model("user", userSchema);
