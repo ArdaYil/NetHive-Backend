@@ -32,4 +32,10 @@ router.post(
   }
 );
 
+router.get("/", (req: Request, res: Response) => {
+  return res.json({
+    success: true,
+  });
+});
+
 export default router;

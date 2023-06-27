@@ -31,21 +31,21 @@ const userValidationSchema = z
   .object({
     name: z
       .string()
-      .min(1, minLength("Name", nameMinLength))
-      .max(50, maxLength("Name", nameMaxLength)),
+      .min(nameMinLength, minLength("Name", nameMinLength))
+      .max(nameMaxLength, maxLength("Name", nameMaxLength)),
 
     surname: z
       .string()
-      .min(1, minLength("Surname", surnameMinLength))
-      .max(50, maxLength("Surname", surnameMaxLength)),
+      .min(surnameMinLength, minLength("Surname", surnameMinLength))
+      .max(surnameMaxLength, maxLength("Surname", surnameMaxLength)),
 
     email: z
       .string()
       .email("Input has to be an email")
-      .min(5, minLength("Email", emailMinLength))
-      .max(100, maxLength("Email", emailMaxLength)),
-    password: z.string().min(8).max(100),
-    confirmPassword: z.string().min(8).max(100),
+      .min(emailMinLength, minLength("Email", emailMinLength))
+      .max(emailMaxLength, maxLength("Email", emailMaxLength)),
+    password: z.string().min(passwordMinLength).max(passwordMaxLength),
+    confirmPassword: z.string().min(passwordMinLength).max(passwordMaxLength),
     gender: z.string().min(1).max(50),
     newsletter: z.boolean(),
     termsOfService: z.boolean(),

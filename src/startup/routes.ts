@@ -1,8 +1,8 @@
 import express, { Application } from "express";
-import user from "../routes/user";
+import users from "../routes/users";
 
 const routes = (app: Application) => {
-  app.use("/api/user", user);
+  app.use("/api/users", users);
 };
 
 export default routes;
