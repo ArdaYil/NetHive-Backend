@@ -47,6 +47,7 @@ const userValidationSchema = z
     password: z.string().min(passwordMinLength).max(passwordMaxLength),
     confirmPassword: z.string().min(passwordMinLength).max(passwordMaxLength),
     gender: z.string().min(1).max(50),
+    birthdate: z.string().min(1).max(50),
     newsletter: z.boolean(),
     termsOfService: z.boolean(),
   })
@@ -111,6 +112,9 @@ export class User {
 
   @prop({ required: true, min: 1, max: 50 })
   gender: string;
+
+  @prop({ required: true, min: 1, max: 50 })
+  birthdate: string;
 
   @prop({ required: true })
   newsletter: boolean;

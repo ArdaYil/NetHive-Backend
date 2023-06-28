@@ -24,7 +24,15 @@ router.post(
         .header("x-auth-token", jwt)
         .status(200)
         .json(
-          _.pick(user, ["_id", "name", "surname", "email", "role", "gender"])
+          _.pick(user, [
+            "_id",
+            "name",
+            "surname",
+            "email",
+            "role",
+            "gender",
+            "birthdate",
+          ])
         );
     } catch (e) {
       res.status(400).send(e);
