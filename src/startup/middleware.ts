@@ -1,8 +1,8 @@
 import express, { Application } from "express";
-import cors from "cors";
+import corsHandler from "./corsHandler";
 
 const middleware = (app: Application) => {
-  app.use(cors());
+  app.use(corsHandler);
   app.use(express.json());
 };
 
