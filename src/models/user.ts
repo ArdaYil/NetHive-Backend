@@ -75,21 +75,26 @@ export type UserInputBody = TypeOf<typeof userValidationSchema>;
   },
 })
 export class User {
-  @prop({ required: true, min: nameMinLength, max: nameMaxLength, trim: true })
+  @prop({
+    required: true,
+    minlength: nameMinLength,
+    maxlength: nameMaxLength,
+    trim: true,
+  })
   name: string;
 
   @prop({
     required: true,
-    min: surnameMinLength,
-    max: surnameMaxLength,
+    minlength: surnameMinLength,
+    maxlength: surnameMaxLength,
     trim: true,
   })
   surname: string;
 
   @prop({
     required: true,
-    min: emailMinLength,
-    max: emailMaxLength,
+    minlength: emailMinLength,
+    maxlength: emailMaxLength,
     unique: true,
     trim: true,
     validate: {
@@ -101,8 +106,8 @@ export class User {
 
   @prop({
     required: true,
-    min: passwordMinLength,
-    max: passwordHashMaxLength,
+    minlength: passwordMinLength,
+    maxlength: passwordHashMaxLength,
     trim: true,
   })
   password: string;
@@ -110,10 +115,10 @@ export class User {
   @prop({ min: 1, max: 10, default: 1 })
   permissionLevel: number;
 
-  @prop({ required: true, min: 1, max: 50 })
+  @prop({ required: true, minlength: 1, maxlength: 50 })
   gender: string;
 
-  @prop({ required: true, min: 1, max: 50 })
+  @prop({ required: true, minlength: 1, maxlength: 50 })
   birthdate: string;
 
   @prop({ required: true })
@@ -128,7 +133,7 @@ export class User {
   })
   termsOfService: boolean;
 
-  @prop({ default: "member", min: 1, max: 50 })
+  @prop({ default: "member", minlength: 1, maxlength: 50 })
   role: string;
 
   public generateAccessToken() {
